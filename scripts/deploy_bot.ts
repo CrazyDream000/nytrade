@@ -18,7 +18,7 @@ async function main() {
   console.log('MarketFactory address', contract.address)
 
   const Main = await ethers.getContractFactory('Main')
-  const mainContract = await Main.deploy("0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd")
+  const mainContract = await Main.deploy()
 
   // const ServiceMarketF = await ethers.getContractFactory('ServiceMarket');
   // const ServiceMarket = await ServiceMarketF.deploy();
@@ -32,7 +32,7 @@ async function main() {
 
   let tx = await mainContract.setMarketFactory(contract.address)
   await tx.wait()
-  tx = await mainContract.setTreasury("0x79cB71aBC88ddB5329D37b42372E7102B981Be2C")
+  tx = await mainContract.setTreasury("0xf373c3AB28cb898f832478DE48D0Ad955d194e6E")
 
 
   // tx = await mainContract.setAbleToViewALLPrivateMetadata("0xFaF6471d8E5e109Ad13435fc71E0776629C04858", true)

@@ -79,7 +79,7 @@ interface IERC721 is IERC165 {
     function isApprovedForAll(address owner, address operator) external view returns (bool);
 }
 
-contract Main is Ownable, CloneFactory {
+contract afff is Ownable, CloneFactory {
     using SafeERC20 for IERC20;
 
     address public marketFactory;

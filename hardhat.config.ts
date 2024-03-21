@@ -7,7 +7,7 @@ import { task } from 'hardhat/config'
 // Plugins
 
 import '@nomiclabs/hardhat-ethers'
-import '@nomiclabs/hardhat-etherscan'
+import "@nomicfoundation/hardhat-verify";
 import '@nomiclabs/hardhat-waffle'
 import '@openzeppelin/hardhat-upgrades'
 import '@typechain/hardhat'
@@ -26,6 +26,8 @@ const networkConfigs: NetworkConfig[] = [
   { network: 'ropsten', chainId: 3 },
   { network: 'rinkeby', chainId: 4 },
   { network: 'kovan', chainId: 42 },
+  { network: 'hychain', chainId: 2911},
+  { network: 'hychain-testnet', chainId:29112 }
 ]
 
 function getAccountMnemonic() {
@@ -138,18 +140,27 @@ const config: HardhatUserConfig = {
       chainId: 1337,
       url: 'http://localhost:8545',
     },
+    hychain:{
+      chainId: 2911,
+      url: 'https://rpc.hychain.com/http',
+      accounts: [`${process.env.PRIVATE_KEY}`]
+    },
+    "hychain-testnet":{
+      chainId: 29112,
+      url: 'https://testnet-rpc.hychain.com/http',
+      accounts: [`${process.env.PRIVATE_KEY}`]
+    }
   },
   etherscan: {
     //  apiKey: "NURDXE28N6MM9VI216UCSEBZVV5IA7UWSS" // for ether net work
-     apiKey: "N2E5BV7EU18ZEFEMGM8YS5NBPPQH9QJK3Q"
+     apiKey: "N2E5BV7EU18ZEFEMGM8YS5NBPPQH9QJK3Q",
     // apiKey: "BCT83TFQ1QJ7XPRIVG2V82YVF6SVTRVNDE"
+    
   },
   typechain: {
     outDir: 'build/types',
     target: 'ethers-v5',
   },
 }
-
-setupDefaultNetworkProviders(config)
 
 export default config
